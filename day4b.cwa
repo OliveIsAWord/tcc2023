@@ -1,0 +1,14 @@
+// 61 bytes with optimization and compression
+
+include "../include/microw8-api.cwa"
+
+export fn upd() {
+    let i = 0;
+    loop pixels {
+        let inline x = i % 320;
+        let inline y = i as f32 / (320.0 * 20.0);
+        let inline c = sin(x as f32 / 20.0) + sin(y);
+        i?FRAMEBUFFER = ((c + sin(time())) * 64.0) as i32;
+        branch_if (i := i + 1) < 320 * 240: pixels;
+    }
+}

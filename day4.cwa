@@ -1,0 +1,12 @@
+include "../include/microw8-api.cwa"
+
+export fn upd() {
+    let i = 0;
+    loop pixels {
+        let lazy x = i % 320;
+        let lazy y = i / 320;
+        let lazy c = sin(x as f32 / 20.0 + time()) + sin(y as f32 / 20.0 + sin(time() * 0.3) * 5.0);
+        i?FRAMEBUFFER = ((c + sin(time() + y as f32 / 100.0)) * 64.0) as i32;
+        branch_if (i := i + 1) < 320*240: pixels;
+    }
+}

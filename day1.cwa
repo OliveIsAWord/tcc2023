@@ -1,0 +1,21 @@
+include "../include/microw8-api.cwa"
+
+export fn start() {
+    cls(0x0f);
+    let i = 20;
+    loop tree {
+        let w: f32 = 1000.0;
+        let color = if i < 160 {
+            w = (i as f32 - 20.0) * (30.0 / 140.0);
+            0x88
+        } else if i < 200 {
+            w = (i as f32 - 130.0) * (3.0 / 40.0);
+            0x66
+        } else {
+            0xbf
+        };
+        let lazy wi = (w * (randomf() + 2.0)) as i32;
+        hline(160 - wi, 160 + wi, i, color);
+        branch_if (i := i + 1) < 240: tree;
+    }
+}
