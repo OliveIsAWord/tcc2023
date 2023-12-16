@@ -1,0 +1,7 @@
+export fn start() {
+    let i = 0;
+    loop colors {
+        (i * 4)!PALETTE = i * 0x01010101;
+        branch_if (i := i + 1) < 256: colors;
+    }
+}

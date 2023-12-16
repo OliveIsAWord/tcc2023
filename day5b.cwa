@@ -1,0 +1,15 @@
+include "../include/microw8-api.cwa"
+
+const ce = 10.0;
+
+export fn upd() {
+    let i: i32;
+    loop pixels {
+        let inline x = (i % 320 - 120) as f32;
+        let inline y = (i / 320 - 120) as f32;
+        let inline u = (ce * (ce / sqrt(x*x + y*y + ce) + time())) as i32;
+        let inline v = (atan2(x, y) * ce) as i32;
+        i?FRAMEBUFFER = v ^ u;
+        branch_if (i := i + 1) < 76800: pixels;
+    }
+}
